@@ -4,7 +4,7 @@ import winreg
 import zipfile
 import os
 
-sg.theme('Default')
+sg.theme('Gray Gray Gray')
 
 requirements = ["cleo.asi", 'lua51.dll', 'moonloader.asi', 'sampfuncs.asi']
 faction_list = ["Taxi Los Santos", "Taxi Las Venturas", "Taxi San Fierro"]
