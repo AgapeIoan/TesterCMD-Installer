@@ -17,5 +17,9 @@ Dupa compilare, executabilul rezultat il putem gasi in folderul `dist`. Langa ac
 > ![image](https://user-images.githubusercontent.com/44036462/160234943-0ab964f1-55fd-4cf9-b2c0-6e517c870410.png)
 
 
-## Rularea manuala:
+## Rularea folosind interpreter-ul:
 Alternativa compilarii este rulatul folosind [interpreter-ul](https://www.python.org/downloads/) mentionat anterior. Instalam pachetele necesare folosind `pip install -r requirements.txt`, ne asiguram ca arhiva creata anterior se afla in acelasi directory cu cel al installer-ului, dupa care putem rula installer-ul folosind `python installer.py` 
+
+
+## Copierea manuala a fisierelor
+O alternativa a installer-ului este copiatul manual al fisierelor. Copiem folderul `moonloader` in folderul cu jocul, deschidem fisierul `faction_name.txt` din folderul `moonloader/TesterADV` si modificam numele factiunii din acesta. Ne asiguram ca avem cleo, sampfuncs si moonloader instalate, dupa care putem folosi CMD-ul.
