@@ -22,4 +22,4 @@ Alternativa compilarii este rulatul folosind [interpreter-ul](https://www.python
 
 
 ## Copierea manuala a fisierelor
-O alternativa a installer-ului este copiatul manual al fisierelor. Copiem folderul `moonloader` in folderul cu jocul, deschidem fisierul `faction_name.txt` din folderul `moonloader/TesterADV` si modificam numele factiunii din acesta. Ne asiguram ca avem cleo, sampfuncs si moonloader instalate, dupa care putem folosi CMD-ul.
+O alternativa a installer-ului este copiatul manual al fisierelor. Copiem folderul `moonloader` in folderul cu jocul, deschidem fisierul `faction_name.txt` din folderul `moonloader/TesterADV` si modificam numele factiunii din acesta. Ne asiguram ca avem cleo, sampfuncs si moonloader instalate, dupa care putem folosi mod-ul.
