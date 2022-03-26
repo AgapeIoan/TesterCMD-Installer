@@ -1,0 +1,2 @@
+Transportul jucatorilor dintr-o locatie in alta in schimbul unei sume de bani.
+Fare 1500.
