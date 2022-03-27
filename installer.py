@@ -24,9 +24,14 @@ def read_reg(k = 'gta_sa_exe'):
     return None
 
 def update_faction_name(faction_name):
+    if not os.path.exists('faction_name.txt'):
+        print("File doesn't exist")
+        return False
+        
     with open('faction_name.txt', 'w') as f:
         f.write(faction_name + '\n')
         f.write(faction_list_scurt[faction_list.index(faction_name)])
+    # check if file exists
     zip = zipfile.ZipFile('testercmd.zip','a')
     zip.write('faction_name.txt', 'moonloader\\TesterCMD\\faction_name.txt')
     zip.close()
@@ -36,9 +41,9 @@ default_game_path = read_reg() or None
 
 layout = [[sg.Text('Numele factiunii:')],
           [sg.Listbox(values=faction_list, size=(30, 3), key='_listbox_')],
-          [sg.Text('Game path:')],
+          [sg.Text('Locatia jocului (gta_sa.exe):')],
           [sg.Input(default_text=default_game_path), sg.FileBrowse()],
-          [sg.OK(button_text="Install"), sg.Cancel()]]
+          [sg.OK(button_text="Install", button_color="green"), sg.Cancel()]]
 
 window = sg.Window('TesterCMD Installer', layout)
 
