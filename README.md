@@ -23,3 +23,7 @@ Alternativa compilarii este rulatul folosind [interpreter-ul](https://www.python
 
 ## Copierea manuala a fisierelor
 O alternativa a installer-ului este copiatul manual al fisierelor. Copiem folderul `moonloader` in folderul cu jocul, deschidem fisierul `faction_name.txt` din folderul `moonloader/TesterADV` si modificam numele factiunii din acesta. Ne asiguram ca avem cleo, sampfuncs si moonloader instalate, dupa care putem folosi mod-ul.
+
+
+## Requirements
+Pentru o buna functionare a modurile, recomand instalarea CLEO, SAMPFUNCS, Moonloader si SampAddon. Acestea pot fi cautate si instalate manual sau pot fi descarcate direct de [aici](https://link.agapeioan.ro/modurisamp).
