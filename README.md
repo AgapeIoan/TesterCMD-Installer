@@ -26,4 +26,4 @@ O alternativa a installer-ului este copiatul manual al fisierelor. Copiem folder
 
 
 ## Requirements
-Pentru o buna functionare a modurile, recomand instalarea CLEO, SAMPFUNCS, Moonloader si SampAddon. Acestea pot fi cautate si instalate manual sau pot fi descarcate direct de [aici](https://link.agapeioan.ro/modurisamp).
+Pentru o buna functionare a modurilor, recomand instalarea CLEO, SAMPFUNCS, Moonloader si SampAddon. Acestea pot fi cautate si instalate manual sau pot fi descarcate direct de [aici](https://link.agapeioan.ro/modurisamp).
