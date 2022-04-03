@@ -12,7 +12,6 @@ script_version("v2.0")
 script_authors("AgapeIoan")
 
 RESPONSE_TIMEOUT = true
-INTRO_ACTIV = false
 
 -- imgui
 do
@@ -38,7 +37,7 @@ do
 			-- center
 			imgui.SetNextWindowPos(imgui.ImVec2(sw / 2, sh / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
 			imgui.SetNextWindowSize(imgui.ImVec2(690 + 420 / 3, 360), imgui.Cond.FirstUseEver)
-			imgui.Begin('TesterCMD v2.0 alpha | ' .. testerfuncs.nume_factiune, show_main_window)
+			imgui.Begin('TesterCMD v2.0 | ' .. testerfuncs.nume_factiune, show_main_window)
 			imgui.Text(
 				'- [/intro] - incepi testul\n' ..
 				'- [/intrebare] - pui intrebare pana ajungi la practic\n' ..
@@ -166,11 +165,11 @@ function mare_intro_test()
 		wait(700)
 		sampSendChat("/cw Pe toata perioada testului, trebuie sa ai telefonul inchis si sa folosesti [/cw] ca mijloc de comunicare.")
 		wait(700)
-		sampSendChat("/cw Timpul de raspuns variaza, incepand de la 60 de secunde pana la 180.", testerfuncs.color)
+		sampSendChat("/cw Timpul de raspuns va fi mentionat dupa fiecare intrebare.")
 		wait(700)
-		sampSendChat("/cw Se va specifica la fiecare intrebare cat timp ai la dispozitie sa raspunzi.", testerfuncs.color)
+		sampSendChat("/cw Se va specifica la fiecare intrebare cat timp ai la dispozitie sa raspunzi.")
 		wait(700)
-		sampSendChat("/cw Daca vei fi AFK mai mult de 15 secunde sau vei iesi de pe joc cu [/q], vei fi picat automat.", testerfuncs.color)
+		sampSendChat("/cw Daca vei fi AFK mai mult de 15 secunde sau vei iesi de pe joc cu [/q], vei fi picat automat.")
 		wait(1000)
 		-- (Car whisper) AgapeIoan (102): asd
 		for i=99, 90, -1 do
@@ -243,6 +242,18 @@ function pune_intrebarea_bos()
 	end
 end
 
+function seteaza_test_manual(param)
+	local file_intrebari = 'moonloader\\TesterCMD\\intrebari'..tostring(param)..'.txt'
+	local file_raspunsuri = 'moonloader\\TesterCMD\\raspunsuri'..tostring(param)..'.txt'
+	local file_timpi = 'moonloader\\TesterCMD\\timpiDeRaspuns'..tostring(param)..'.txt'
+
+	miti.copyfile(file_intrebari, 'moonloader\\TesterCMD\\intrebari.txt')
+	miti.copyfile(file_raspunsuri, 'moonloader\\TesterCMD\\raspunsuri.txt')
+	miti.copyfile(file_timpi, 'moonloader\\TesterCMD\\timpiDeRaspuns.txt')
+
+	sampAddChatMessage("Am pregatit setul de intrebari " .. tostring(param) .. ". Tasteaza comanda [/reloadall] pentru ca schimbarea sa aiba efect.", testerfuncs.color)
+end
+
 --- Hatz aici e skema de porneste scriptu
 function main()
 	if not isSampLoaded() or not isSampfuncsLoaded() then return end
@@ -265,6 +276,7 @@ function main()
   sampRegisterChatCommand("tester", tester_helper_3000)
   sampRegisterChatCommand("teoretic", gata_teoreticu_fortat)
   sampRegisterChatCommand("nicknametester", seteaza_nickname_tester_manual)
+  sampRegisterChatCommand("settest", seteaza_test_manual)
   
 
 

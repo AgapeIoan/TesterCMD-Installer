@@ -33,23 +33,23 @@ local LISTA_FACTION_NAME = miti.lines_from(file_faction_name)
 local FINAL_INTREBARI = table.getn(LISTA_INTREBARI)
 local FINAL_RASPUNSURI = table.getn(LISTA_RASPUNSURI)
 
-if FINAL_INTREBARI > FINAL_RASPUNSURI then -- Listele de intrebari si raspunsuri nu sunt facute cum trebuie.
-    sampAddChatMessage("[TesterCMD.lua] Eroare: Numarul de intrebari este mai mare decat numarul de raspunsuri!", COLOR_CHAT)
-    if FINAL_INTREBARI - 1 == FINAL_RASPUNSURI then
-        sampAddChatMessage("[TesterCMD.lua] Eroare: Intrebarea " .. FINAL_INTREBARI .. " va fi ignorata deoarece nu are un raspuns pereche!", COLOR_CHAT)
-    else
-        sampAddChatMessage("[TesterCMD.lua] Eroare: Intrebarile " .. FINAL_RASPUNSURI + 1 .. "-" .. FINAL_INTREBARI .. " vor fi ignorate deoarece nu au un raspuns pereche!", COLOR_CHAT)
-    end
-    FINAL_INTREBARI = FINAL_RASPUNSURI
-elseif FINAL_INTREBARI < FINAL_RASPUNSURI then
-    sampAddChatMessage("[TesterCMD.lua] Eroare: Numarul de raspunsuri este mai mare decat numarul de intrebari!", COLOR_CHAT)
-    if FINAL_INTREBARI - 1 == FINAL_RASPUNSURI then
-        sampAddChatMessage("[TesterCMD.lua] Eroare: Raspunsul " .. FINAL_RASPUNSURI .. " va fi ignorat deoarece nu are o intrebare pereche!", COLOR_CHAT)
-    else
-        sampAddChatMessage("[TesterCMD.lua] Eroare: Raspunsurile " .. FINAL_INTREBARI + 1 .. "-" .. FINAL_RASPUNSURI .. " vor fi ignorate deoarece nu au intrebari pereche!", COLOR_CHAT)
-    end
-    FINAL_RASPUNSURI = FINAL_INTREBARI
-end
+-- if FINAL_INTREBARI > FINAL_RASPUNSURI then -- Listele de intrebari si raspunsuri nu sunt facute cum trebuie.
+--     sampAddChatMessage("[TesterCMD.lua] Eroare: Numarul de intrebari este mai mare decat numarul de raspunsuri!", COLOR_CHAT)
+--     if FINAL_INTREBARI - 1 == FINAL_RASPUNSURI then
+--         sampAddChatMessage("[TesterCMD.lua] Eroare: Intrebarea " .. FINAL_INTREBARI .. " va fi ignorata deoarece nu are un raspuns pereche!", COLOR_CHAT)
+--     else
+--         sampAddChatMessage("[TesterCMD.lua] Eroare: Intrebarile " .. FINAL_RASPUNSURI + 1 .. "-" .. FINAL_INTREBARI .. " vor fi ignorate deoarece nu au un raspuns pereche!", COLOR_CHAT)
+--     end
+--     FINAL_INTREBARI = FINAL_RASPUNSURI
+-- elseif FINAL_INTREBARI < FINAL_RASPUNSURI then
+--     sampAddChatMessage("[TesterCMD.lua] Eroare: Numarul de raspunsuri este mai mare decat numarul de intrebari!", COLOR_CHAT)
+--     if FINAL_INTREBARI - 1 == FINAL_RASPUNSURI then
+--         sampAddChatMessage("[TesterCMD.lua] Eroare: Raspunsul " .. FINAL_RASPUNSURI .. " va fi ignorat deoarece nu are o intrebare pereche!", COLOR_CHAT)
+--     else
+--         sampAddChatMessage("[TesterCMD.lua] Eroare: Raspunsurile " .. FINAL_INTREBARI + 1 .. "-" .. FINAL_RASPUNSURI .. " vor fi ignorate deoarece nu au intrebari pereche!", COLOR_CHAT)
+--     end
+--     FINAL_RASPUNSURI = FINAL_INTREBARI
+-- end
 
 -- Initializam timpii de raspuns
 for i=1, FINAL_INTREBARI do -- Luam nr intrebari ca referinta
@@ -61,11 +61,11 @@ end
 local nume_factiune = LISTA_FACTION_NAME[1]
 local nume_factiune_scurt = LISTA_FACTION_NAME[2]
 
-if nume_factiune == nil or nume_factiune_scurt == nil then
-    sampAddChatMessage("[TesterCMD.lua] Eroare: Nu s-a putut incarca numele factiunii! Acesta va fi setat cu o denumire generica pentru buna functionare a CMD-ului.", COLOR_CHAT)
-    nume_factiune = "aceasta factiune"
-    nume_factiune_scurt = "aceasta factiune"
-end
+-- if nume_factiune == nil or nume_factiune_scurt == nil then
+--     sampAddChatMessage("[TesterCMD.lua] Eroare: Nu s-a putut incarca numele factiunii! Acesta va fi setat cu o denumire generica pentru buna functionare a CMD-ului.", COLOR_CHAT)
+--     nume_factiune = "aceasta factiune"
+--     nume_factiune_scurt = "aceasta factiune"
+-- end
 
 -- Initializam intrebarile
 for i=1, FINAL_INTREBARI do
