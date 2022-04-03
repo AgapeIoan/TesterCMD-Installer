@@ -7,8 +7,8 @@ import os
 sg.theme('Gray Gray Gray')
 
 requirements = ["cleo.asi", 'lua51.dll', 'moonloader.asi', 'sampfuncs.asi']
-faction_list = ["Taxi Los Santos", "Taxi Las Venturas", "Taxi San Fierro"]
-faction_list_scurt = ["Taxi LS", "Taxi LV", "Taxi SF"]
+faction_list = ["Taxi Los Santos", "Taxi Las Venturas", "Taxi San Fierro", "FBI"]
+faction_list_scurt = ["Taxi LS", "Taxi LV", "Taxi SF", "FBI"]
 # Gasim path-ul jocului la HKEY_CURRENT_USER\Software\SAMP\gta_sa_exe REG_SZ
 
 def read_reg(k = 'gta_sa_exe'):
