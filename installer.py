@@ -23,24 +23,24 @@ def read_reg(k = 'gta_sa_exe'):
         print(e)
     return None
 
-def update_faction_name(faction_name):
-    if not os.path.exists('faction_name.txt'):
+def create_file_if_not_exists(file_name, content):
+    if not os.path.exists(file_name):
         print("File doesn't exist")
         return False
         
-    with open('faction_name.txt', 'w') as f:
-        f.write(faction_name + '\n')
-        f.write(faction_list_scurt[faction_list.index(faction_name)])
+    with open(file_name, 'w') as f:
+        f.write(content + '\n')
+        f.write(faction_list_scurt[faction_list.index(content)])
     # check if file exists
     zip = zipfile.ZipFile('testercmd.zip','a')
-    zip.write('faction_name.txt', 'moonloader\\TesterCMD\\faction_name.txt')
+    zip.write(file_name, 'moonloader\\TesterCMD\\' + file_name)
     zip.close()
-    os.remove('faction_name.txt')
+    os.remove(file_name)
 
 default_game_path = read_reg() or None
 
 layout = [[sg.Text('Numele factiunii:')],
-          [sg.Listbox(values=faction_list, size=(30, 3), key='_listbox_')],
+          [sg.Listbox(values=faction_list, size=(30, 4), key='_listbox_')],
           [sg.Text('Locatia jocului (gta_sa.exe):')],
           [sg.Input(default_text=default_game_path), sg.FileBrowse()],
           [sg.OK(button_text="Install", button_color="green"), sg.Cancel()]]
@@ -51,14 +51,18 @@ try:
     event, values = window.read()
     print(event, values)
     if event == 'Install':
+        path_to_game = ''.join(os.path.split(values[0])[:-1]) # Folderul in care se afla gta_sa.exe
+
         if values['_listbox_'] == []:
             sg.popup('Selecteaza o factiune!')
             exit()
         else:
             factiune = values['_listbox_'][0]
-            update_faction_name(factiune)
-        path_to_game = ''.join(os.path.split(values[0])[:-1]) # Folderul in care se afla gta_sa.exe
-
+            create_file_if_not_exists(path_to_game+'moonloader\\TesterCMD\\faction_name.txt', factiune)
+            create_file_if_not_exists(path_to_game+'moonloader\\TesterCMD\\intrebari.txt', f"Ce face {factiune}?\nCum iei FW?") # Template pentru a sti baietii cum sa faca txt-urile
+            create_file_if_not_exists(path_to_game+'moonloader\\TesterCMD\\raspunsuri.txt', f"Joaca SAMP.\nFac DM.") # Template pentru a sti baietii cum sa faca txt-urile
+            create_file_if_not_exists(path_to_game+"moonloader\\TesterCMD\\timpiDeRaspuns.txt", "10\n60")
+        
         with zipfile.ZipFile('testercmd.zip', 'r') as zip_ref:
             zip_ref.extractall(path_to_game)
 
