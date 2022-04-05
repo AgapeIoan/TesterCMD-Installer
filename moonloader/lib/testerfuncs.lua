@@ -140,7 +140,29 @@ function tester.incepem_proba_practica(total_greseli, are_proba_practica)
 	end)
 end
 
+function tester.get_nickname_passager() -- Functie trasa pe dreapta din taxist_suprem.luac dar nu zicem
+	if isCharInAnyCar(PLAYER_PED) then
+		local masina_noastra = storeCarCharIsInNoSave(PLAYER_PED)
+		local _, numar_pasageri = getNumberOfPassengers(masina_noastra)
+		
+		if numar_pasageri > 0 then
+			for i=1, numar_pasageri do
+				local scaun = isCarPassengerSeatFree(masina_noastra, i)
+				if scaun then break end
+			end
 
+			local pasager = getCharInCarPassengerSeat(masina_noastra, scaun)
+			local _, player_id = sampGetPlayerIdByCharHandle(pasager)
+			local nickname = sampGetPlayerNickname(player_id)
+
+			return nickname
+		end
+
+		return nil -- In caz ca navem pasager
+	end
+
+	return nil
+end
 
 return {
     de_dat_tog = de_dat_tog,

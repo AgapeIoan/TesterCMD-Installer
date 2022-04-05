@@ -160,9 +160,14 @@ function mare_intro_test()
 	local result, ped = getPlayerChar(getGameGlobal(glob.PLAYER_CHAR))
 	local result, playerid = sampGetPlayerIdByCharHandle(ped)
 	TESTER_NAME = sampGetPlayerNickname(playerid)
+	CIVIL_NAME = testerfuncs.tester.get_nickname_passager()
 	
 	lua_thread.create(function()
-		sampSendChat("/f Test, dau /togf.")
+		if CIVIL_NAME == nil then
+			sampSendChat("/f Test, dau /togf.")
+		else
+			sampSendChat("/f Test cu " .. CIVIL_NAME .. ", dau /togf.")
+		end
 		wait(700)
 		sampSendChat("/cw Salut! Eu sunt " .. TESTER_NAME .. ", iar impreuna vom sustine testul de intrare in " .. testerfuncs.nume_factiune_scurt .. ".")
 		wait(700)
