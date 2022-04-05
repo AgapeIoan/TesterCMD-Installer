@@ -96,7 +96,7 @@ function togall_off() -- Trebuie sa ruleze in lua_thread pentru wait
 		end
 	end
 	
-	sampAddChatMessage("{FF0000}Nu uita de [/togpremium] si [/togvip], dupa caz.", testerfuncs.color)
+	sampAddChatMessage("{FF0000}(!) Nu uita de [/togpremium] si [/togvip], dupa caz.", testerfuncs.color)
 end
 
 function togall_on() -- Trebuie sa ruleze in lua_thread pentru wait
