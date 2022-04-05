@@ -124,15 +124,19 @@ function tester.increment_greseli(total_greseli, greseli_de_adaugat)
     return total_greseli
 end
 
-function tester.incepem_proba_practica(total_greseli)
+function tester.incepem_proba_practica(total_greseli, are_proba_practica)
     lua_thread.create(function()
-		sampSendChat("/cw Felicitari! Ai trecut testul teoretic. Urmeaza cel practic.")
-		wait(1000)
-		sampSendChat("/cw Daca ocolesti, primesti 0.5/3 greseli.")
-		wait(420)
-		sampSendChat("/cw Daca nu cunosti locatia, primesti 1/3 greseli.")
-		wait(420)
-		sampSendChat("/cw Continuam cu " .. tostring(total_greseli) .. "/3 greseli.")
+		if are_proba_practica then
+			sampSendChat("/cw Felicitari! Ai trecut testul teoretic. Urmeaza cel practic.")
+			wait(1000)
+			sampSendChat("/cw Daca ocolesti, primesti 0.5/3 greseli.")
+			wait(420)
+			sampSendChat("/cw Daca nu cunosti locatia, primesti 1/3 greseli.")
+			wait(420)
+			sampSendChat("/cw Continuam cu " .. tostring(total_greseli) .. "/3 greseli.")
+		else
+			sampAddChatMessage("[TesterCMD.lua] (!) Am ajuns la finalul intrebarilor. Daca totul este in regula, tasteaza comanda [/gg].", COLOR_CHAT)
+		end
 	end)
 end
 

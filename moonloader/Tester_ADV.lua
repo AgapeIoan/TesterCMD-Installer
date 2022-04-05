@@ -12,6 +12,9 @@ script_version("v2.0")
 script_authors("AgapeIoan")
 
 RESPONSE_TIMEOUT = true
+FACTION_SETTINGS = decodeJson(io.open(getWorkingDirectory().."\\TesterCMD\\faction_settings.json", "r"):read("*all"))
+-- Key: "practica" reprezinta daca factiunea respectiva are proba practica sau nu.
+-- Atentie! La mafii nu stiu daca mai exista sau nu proba practica, astfel am lasat pe fals valoarea. Daca vrea mafiotu 1v1 deagle ca proba practica ayaye scrie manual in chat deocamdata.
 
 -- imgui
 do
@@ -165,9 +168,7 @@ function mare_intro_test()
 		wait(700)
 		sampSendChat("/cw Pe toata perioada testului, trebuie sa ai telefonul inchis si sa folosesti [/cw] ca mijloc de comunicare.")
 		wait(700)
-		sampSendChat("/cw Timpul de raspuns va fi mentionat dupa fiecare intrebare.")
-		wait(700)
-		sampSendChat("/cw Se va specifica la fiecare intrebare cat timp ai la dispozitie sa raspunzi.")
+		sampSendChat("/cw Se va specifica dupa fiecare intrebare cat timp ai la dispozitie sa raspunzi.")
 		wait(700)
 		sampSendChat("/cw Daca vei fi AFK mai mult de 15 secunde sau vei iesi de pe joc cu [/q], vei fi picat automat.")
 		wait(1000)
@@ -215,7 +216,7 @@ function nu_stii_mapa_mane() -- Locatie
 end
 
 function gata_teoreticu_fortat()
-	testerfuncs.tester.incepem_proba_practica(testerfuncs.TOTAL_GRESELI)
+	testerfuncs.tester.incepem_proba_practica(testerfuncs.TOTAL_GRESELI, FACTION_SETTINGS[testerfuncs.nume_factiune]["proba_practica"])
 end
 
 function init_timer_intrebare(timp)
@@ -231,7 +232,7 @@ end
 
 function pune_intrebarea_bos()
 	if testerfuncs.INTREBARE_CURENTA == testerfuncs.FINAL_RASPUNSURI + 1 then
-		testerfuncs.tester.incepem_proba_practica(testerfuncs.TOTAL_GRESELI)
+		testerfuncs.tester.incepem_proba_practica(testerfuncs.TOTAL_GRESELI, FACTION_SETTINGS[testerfuncs.nume_factiune]["proba_practica"])
 		testerfuncs.INTREBARE_CURENTA = testerfuncs.INTREBARE_CURENTA + 1
 		return
 	elseif testerfuncs.INTREBARE_CURENTA < testerfuncs.FINAL_RASPUNSURI + 1 then
@@ -259,7 +260,7 @@ function main()
 	if not isSampLoaded() or not isSampfuncsLoaded() then return end
 	while not isSampAvailable() do wait(100) end
 
-	sampAddChatMessage("TesterCMD.lua v2.0 | Pic civili simulator", testerfuncs.color)
+	sampAddChatMessage("TesterCMD.lua v2.0 BETA | Pic civili simulator", testerfuncs.color)
 	--- Dar macar daca furi citu, da si credite ms
 
 	--- Mai jos aicia lista cu comenzi
@@ -278,6 +279,22 @@ function main()
   sampRegisterChatCommand("nicknametester", seteaza_nickname_tester_manual)
   sampRegisterChatCommand("settest", seteaza_test_manual)
   
+  
+  sampRegisterChatCommand("inputjson", function(input)
+    local f = io.open(getWorkingDirectory().."\\config\\TesterCMD.json", "w")
+
+    f:write(encodeJson({["string"]=input}))
+    f:close()
+end)
+
+sampRegisterChatCommand("printjson", function()
+	local t = FACTION_SETTINGS[nume_factiune]["proba_practica"]
+	for k,v in pairs(t) do
+		sampAddChatMessage(k.." "..tostring(v["practica"]), testerfuncs.color)
+	end
+    sampAddChatMessage(f:read(), -1)
+    f:close()
+end)
 
 
   for i=1,testerfuncs.FINAL_RASPUNSURI do
