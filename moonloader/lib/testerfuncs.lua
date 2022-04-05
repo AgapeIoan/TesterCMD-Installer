@@ -33,23 +33,27 @@ local LISTA_FACTION_NAME = miti.lines_from(file_faction_name)
 local FINAL_INTREBARI = table.getn(LISTA_INTREBARI)
 local FINAL_RASPUNSURI = table.getn(LISTA_RASPUNSURI)
 
--- if FINAL_INTREBARI > FINAL_RASPUNSURI then -- Listele de intrebari si raspunsuri nu sunt facute cum trebuie.
---     sampAddChatMessage("[TesterCMD.lua] Eroare: Numarul de intrebari este mai mare decat numarul de raspunsuri!", COLOR_CHAT)
---     if FINAL_INTREBARI - 1 == FINAL_RASPUNSURI then
---         sampAddChatMessage("[TesterCMD.lua] Eroare: Intrebarea " .. FINAL_INTREBARI .. " va fi ignorata deoarece nu are un raspuns pereche!", COLOR_CHAT)
---     else
---         sampAddChatMessage("[TesterCMD.lua] Eroare: Intrebarile " .. FINAL_RASPUNSURI + 1 .. "-" .. FINAL_INTREBARI .. " vor fi ignorate deoarece nu au un raspuns pereche!", COLOR_CHAT)
---     end
---     FINAL_INTREBARI = FINAL_RASPUNSURI
--- elseif FINAL_INTREBARI < FINAL_RASPUNSURI then
---     sampAddChatMessage("[TesterCMD.lua] Eroare: Numarul de raspunsuri este mai mare decat numarul de intrebari!", COLOR_CHAT)
---     if FINAL_INTREBARI - 1 == FINAL_RASPUNSURI then
---         sampAddChatMessage("[TesterCMD.lua] Eroare: Raspunsul " .. FINAL_RASPUNSURI .. " va fi ignorat deoarece nu are o intrebare pereche!", COLOR_CHAT)
---     else
---         sampAddChatMessage("[TesterCMD.lua] Eroare: Raspunsurile " .. FINAL_INTREBARI + 1 .. "-" .. FINAL_RASPUNSURI .. " vor fi ignorate deoarece nu au intrebari pereche!", COLOR_CHAT)
---     end
---     FINAL_RASPUNSURI = FINAL_INTREBARI
--- end
+function tester.check_questions_integrity(FINAL_INTREBARI, FINAL_RASPUNSURI)
+	if FINAL_INTREBARI > FINAL_RASPUNSURI then -- Listele de intrebari si raspunsuri nu sunt facute cum trebuie.
+		sampAddChatMessage("[TesterCMD.lua] Eroare: Numarul de intrebari este mai mare decat numarul de raspunsuri!", COLOR_CHAT)
+		if FINAL_INTREBARI - 1 == FINAL_RASPUNSURI then
+			sampAddChatMessage("[TesterCMD.lua] Eroare: Intrebarea " .. FINAL_INTREBARI .. " va fi ignorata deoarece nu are un raspuns pereche!", COLOR_CHAT)
+		else
+			sampAddChatMessage("[TesterCMD.lua] Eroare: Intrebarile " .. FINAL_RASPUNSURI + 1 .. "-" .. FINAL_INTREBARI .. " vor fi ignorate deoarece nu au un raspuns pereche!", COLOR_CHAT)
+		end
+		FINAL_INTREBARI = FINAL_RASPUNSURI
+	elseif FINAL_INTREBARI < FINAL_RASPUNSURI then
+		sampAddChatMessage("[TesterCMD.lua] Eroare: Numarul de raspunsuri este mai mare decat numarul de intrebari!", COLOR_CHAT)
+		if FINAL_INTREBARI - 1 == FINAL_RASPUNSURI then
+			sampAddChatMessage("[TesterCMD.lua] Eroare: Raspunsul " .. FINAL_RASPUNSURI .. " va fi ignorat deoarece nu are o intrebare pereche!", COLOR_CHAT)
+		else
+			sampAddChatMessage("[TesterCMD.lua] Eroare: Raspunsurile " .. FINAL_INTREBARI + 1 .. "-" .. FINAL_RASPUNSURI .. " vor fi ignorate deoarece nu au intrebari pereche!", COLOR_CHAT)
+		end
+		FINAL_RASPUNSURI = FINAL_INTREBARI
+	end
+
+	return FINAL_INTREBARI, FINAL_RASPUNSURI
+end
 
 -- Initializam timpii de raspuns
 for i=1, FINAL_INTREBARI do -- Luam nr intrebari ca referinta

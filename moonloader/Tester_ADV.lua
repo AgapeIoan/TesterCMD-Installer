@@ -49,7 +49,8 @@ do
 				'- [/grp] - acorzi 0.5/3 greseli\n' ..
 				'- [/gr05] - acorzi 0.5/3 greseli, insa nu specifici motivul\n' .. 
 				'- [/st] - sari peste intrebare *\n' ..
-				'- [/w1] => [/w20] - pui intrebarea manual\n' ..
+				'- [/w1] => [/w20] - pui intrebarea manual, fara /intrebare (/w20 este doar un exemplu, numarul reprezinta intrebarea)\n' ..
+				'Factiunile de tip taxi mai dispun de urmatoarele comenzi:\n' ..
 				'- [/teoretic] - zici manual ca a trecut teoreticul\n' ..
 				'- [/ocolire] - acorzi 0.5/3 greseli pentru ocolire\n' ..
 				'- [/locatie] - acorzi 1/3 greseli pentru necunoasterea locatiei\n' ..
@@ -265,7 +266,8 @@ function main()
 	if not isSampLoaded() or not isSampfuncsLoaded() then return end
 	while not isSampAvailable() do wait(100) end
 
-	sampAddChatMessage("TesterCMD.lua v2.0 BETA | Pic civili simulator", testerfuncs.color)
+	sampAddChatMessage("TesterCMD.lua v2.0 | Pic civili simulator", testerfuncs.color)
+	testerfuncs.FINAL_INTREBARI, testerfuncs.FINAL_RASPUNSURI = testerfuncs.tester.check_questions_integrity(testerfuncs.FINAL_INTREBARI, testerfuncs.FINAL_RASPUNSURI)
 	--- Dar macar daca furi citu, da si credite ms
 
 	--- Mai jos aicia lista cu comenzi
