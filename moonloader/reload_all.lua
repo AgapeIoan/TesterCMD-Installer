@@ -8,6 +8,10 @@ end
 
 --- Main
 function main()
+	if not isSampLoaded() or not isSampfuncsLoaded() then return end
+	while not isSampAvailable() do wait(100) end
+	
+	sampRegisterChatCommand("reloadall", reloadall)
   while true do
 	wait(40)
 	if isKeyDown(17) and isKeyDown(82) then -- CTRL+R
@@ -15,4 +19,9 @@ function main()
 		reloadScripts()
 	end
   end
+end
+
+function reloadall()
+  reloadScripts()
+  sampAddChatMessage("Reloaded all extensions!")
 end
